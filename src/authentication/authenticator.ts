@@ -67,6 +67,10 @@ export class Authenticator {
       return Promise.resolve(token);
     }
 
+    if (token && hasTokenExpired) {
+      this.tokens.delete(provider);
+    }
+
     return this._openAuthDialog(provider, useMicrosoftTeams);
   }
 
